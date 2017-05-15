@@ -8,14 +8,14 @@ app.use(morgan('combined'));
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
-app.get('/', function (req,res){
-     res.sendFile(path.join(__dirname, 'ui', 'article one.html'));
+app.get('/articleone',function(req,res){
+   res.send('Article one is requested and will be served'); 
 });
-app.get('/', function (req,res){
-    res.send('Article two requested and will be server here');
+app.get('/articletwo',function(req,res){
+   res.send('Article two is requested and will be served'); 
 });
-app.get('/', function (req,res){
-    res.send('Article three requested and will be server here');
+app.get('/articlethree',function(req,res){
+   res.send('Article three is requested and will be served'); 
 });
 
 app.get('/ui/style.css', function (req, res) {
