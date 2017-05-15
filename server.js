@@ -4,11 +4,12 @@ var path = require('path');
 
 var app = express();
 app.use(morgan('combined'));
-var articleone={
-    title:'ArticleOne|Palaniappan',
-    heading:'articleone',
-    date:'may 5,2017',
-    content:`<p>
+var articles = {
+    `articleone`:{
+      title:'ArticleOne|Palaniappan',
+      heading:'articleone',
+      date:'may 5,2017',
+       content:`<p>
                     This is the content of jy first webpage.This is the content of jy first webpage.This is the content of jy first webpage.This is the content of jy first webpage.This is the content of jy first webpage.This is the content of jy first webpage.
             </p>
                 
@@ -19,8 +20,40 @@ var articleone={
             <p>
                     This is the content of jy first webpage.This is the content of jy first webpage.This is the content of jy first webpage.This is the content of jy first webpage.This is the content of jy first webpage.This is the content of jy first webpage.
              </p>`
-    
-}; 
+    }, 
+    `articletwo`:{
+         title:'ArticleTwo|Palaniappan',
+      heading:'articleone',
+      date:'may 10,2017',
+       content:`<p>
+                    This is the content of jy first webpage.This is the content of jy first webpage.This is the content of jy first webpage.This is the content of jy first webpage.This is the content of jy first webpage.This is the content of jy first webpage.
+            </p>
+                
+            <p>
+                    This is the content of jy first webpage.This is the content of jy first webpage.This is the content of jy first webpage.This is the content of jy first webpage.This is the content of jy first webpage.This is the content of jy first webpage.
+            </p>
+                
+            <p>
+                    This is the content of jy first webpage.This is the content of jy first webpage.This is the content of jy first webpage.This is the content of jy first webpage.This is the content of jy first webpage.This is the content of jy first webpage.
+             </p>`
+    },
+    `articlethree`:{
+         title:'ArticleThree|Palaniappan',
+      heading:'articleone',
+      date:'may 15,2017',
+       content:`<p>
+                    This is the content of jy first webpage.This is the content of jy first webpage.This is the content of jy first webpage.This is the content of jy first webpage.This is the content of jy first webpage.This is the content of jy first webpage.
+            </p>
+                
+            <p>
+                    This is the content of jy first webpage.This is the content of jy first webpage.This is the content of jy first webpage.This is the content of jy first webpage.This is the content of jy first webpage.This is the content of jy first webpage.
+            </p>
+                
+            <p>
+                    This is the content of jy first webpage.This is the content of jy first webpage.This is the content of jy first webpage.This is the content of jy first webpage.This is the content of jy first webpage.This is the content of jy first webpage.
+             </p>`
+    },
+};
 function createtemplate (data){
     var title = data.title;
     var date = data.date;
@@ -57,14 +90,9 @@ function createtemplate (data){
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
-app.get('/articleone',function(req,res){
-  res.send(createtemplate(articleone)); 
-});
-app.get('/articletwo',function(req,res){
-    res.sendFile(path.join(__dirname, 'ui', 'articletwo.html')); 
-});
-app.get('/articlethree',function(req,res){
-     res.sendFile(path.join(__dirname, 'ui', 'articlethree.html'));  
+app.get('/:articlename',function(req,res){
+    var.articlename=req.params.articlename;
+  res.send(createtemplate(articles[articlename])); 
 });
 
 app.get('/ui/style.css', function (req, res) {
